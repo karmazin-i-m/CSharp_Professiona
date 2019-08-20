@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ITVDN_Task_3.Citizen">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAEgEIMAAQAAAAEAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Citizen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="ITVDN_Task_3.Student">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="ITVDN_Task_3.Citizen" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="1.75" />
+        <Point X="3" Y="0.995" />
+        <Point X="4.75" Y="0.995" />
+        <Point X="4.75" Y="1.118" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITVDN_Task_3.Retiree">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Retiree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITVDN_Task_3.Worker">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="ITVDN_Task_3.Citizen" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="4.898" />
+        <Point X="4.125" Y="4.898" />
+        <Point X="4.125" Y="5.118" />
+        <Point X="4.75" Y="5.118" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Worker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITVDN_Task_3.MigrationService">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAgAAACAABBAABACAJAQCgAQAAAAEIAAAAEBQAAA=</HashCode>
+      <FileName>MigrationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
