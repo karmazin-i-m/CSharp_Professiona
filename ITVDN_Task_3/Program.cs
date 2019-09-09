@@ -13,7 +13,7 @@ namespace ITVDN_Task_3
         static List<string> ToZipPathes = new List<string>();
         static void Main(string[] args)
         {
-            DirectoryInfo info = new DirectoryInfo(@"C:\");
+            DirectoryInfo info = new DirectoryInfo(@"D:\");
 
             var innerDirectoryInfo = info.GetDirectories();
             var innerFileInfo = info.GetFiles();
