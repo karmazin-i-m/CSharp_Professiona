@@ -19,8 +19,9 @@ namespace ITVDN_AdditionTask_1
                 xml.WriteStartDocument();
                 xml.WriteStartElement("MyContacts");
                 xml.WriteStartElement("Contact");
-                xml.WriteAttributeString("Name","Illya");
-                xml.
+                xml.WriteAttributeString("Name", "Illya");
+                xml.WriteString("+3801234567");
+                
                 xml.WriteEndElement();
                 xml.WriteEndElement();
                 xml.WriteEndDocument();
