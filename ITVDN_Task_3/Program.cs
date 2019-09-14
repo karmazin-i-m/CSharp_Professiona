@@ -24,7 +24,6 @@ namespace ITVDN_Task_3
                     Console.WriteLine(item.FirstChild.Value);
                 }
 
-
             }
             Console.WriteLine("Program ended");
             Console.ReadKey();
