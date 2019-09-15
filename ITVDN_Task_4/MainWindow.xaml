@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ITVDN_Task_4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="458" Width="808" >
+        Title="Текстовый редактор" Height="458" Width="808" >
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="417" Margin="594,0,0,0" VerticalAlignment="Top" Width="198">
             <TabItem Header="Шрифт">
