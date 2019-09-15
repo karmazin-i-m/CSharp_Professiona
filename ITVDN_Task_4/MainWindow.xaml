@@ -3,28 +3,59 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ITVDN_Task_4"
         mc:Ignorable="d"
         Title="MainWindow" Height="458" Width="808" >
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="379" Margin="594,0,0,0" VerticalAlignment="Top" Width="198">
-            <TabItem Header="TabItem">
+            <TabItem Header="Шрифт">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    <ComboBox Name="FontComboBox" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="172" SelectedIndex="0" SelectionChanged="FontComboBox_SelectionChanged"/> <!--SelectionChanged="FontComboBox_SelectionChanged"-->
+                    <ComboBox Name="FontSizeComboBox" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="172" SelectedIndex="4" > <!--SelectionChanged="FontSizeComboBox_SelectionChanged"-->
+                        <ComboBoxItem>9</ComboBoxItem>
+                        <ComboBoxItem>10</ComboBoxItem>
+                        <ComboBoxItem>11</ComboBoxItem>
+                        <ComboBoxItem>12</ComboBoxItem>
+                        <ComboBoxItem>13</ComboBoxItem>
+                        <ComboBoxItem>14</ComboBoxItem>
+                        <ComboBoxItem>15</ComboBoxItem>
+                        <ComboBoxItem>16</ComboBoxItem>
+                        <ComboBoxItem>17</ComboBoxItem>
+                        <ComboBoxItem>18</ComboBoxItem>
+                        <ComboBoxItem>19</ComboBoxItem>
+                        <ComboBoxItem>20</ComboBoxItem>
+                    </ComboBox>
+                    <CheckBox Name="BoldCheckBox" Content="Жирный" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="172" Checked="BoldCheckBox_Checked" Unchecked="BoldCheckBox_Unchecked"/> <!--Checked="BoldCheckBox_Checked" Unchecked="BoldCheckBox_Unchecked"-->
+                    <CheckBox Name="ItalicsCheckBox" Content="Курсив" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="172" Unchecked="ItalicsCheckBox_Unchecked" Checked="ItalicsCheckBox_Checked" /> <!--Unchecked="ItalicsCheckBox_Unchecked" Checked="ItalicsCheckBox_Checked"-->
+                    <CheckBox Name="UnderlinedCheckBox" Content="Подчеркнутый" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top" Width="172" Checked="UnderlinedCheckBox_Checked" Unchecked="UnderlinedCheckBox_Unchecked"/> <!--Checked="UnderlinedCheckBox_Checked" Unchecked="UnderlinedCheckBox_Unchecked"-->
+
+                    <Label Content="Шрифт:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="172" Height="26"/>
+                    <Label Content="Размер текста:" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="172"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Цвет">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Цвет текста:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="172"/>
+                    <xctk:ColorPicker Name="FontColorPicer" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="172"/>
+                    <Label Content="Цвет фона:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                    <xctk:ColorPicker HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="172"/>
+                </Grid>
             </TabItem>
         </TabControl>
-        <TextBox HorizontalAlignment="Left" 
+        <TextBox Name="TextBox"
+                 HorizontalAlignment="Left" 
                  Height="419"
                  TextWrapping="Wrap" 
                  Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" 
                  VerticalAlignment="Top" 
                  Width="594"
+                 AcceptsReturn="True"
+                 HorizontalScrollBarVisibility="Disabled"
+                 VerticalScrollBarVisibility="Auto"
                  FontSize="14"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="594,379,0,0" VerticalAlignment="Top" Width="198" Height="40" FontSize="20"/>
 

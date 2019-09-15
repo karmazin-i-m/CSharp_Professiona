@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,48 @@ namespace ITVDN_Task_4
         public MainWindow()
         {
             InitializeComponent();
+
+            InstalledFontCollection installedFontCollection = new InstalledFontCollection();
+
+            System.Drawing.FontFamily[] fontCollections = (System.Drawing.FontFamily[])installedFontCollection.Families;
+
+            foreach (System.Drawing.FontFamily item in fontCollections)
+            {
+                FontComboBox.Items.Add(item.Name);
+            }
+        }
+        private void FontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TextBox.FontFamily = new System.Windows.Media.FontFamily(FontComboBox.Text);
+        }
+        private void BoldCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            TextBox.FontWeight = FontWeights.Bold;
+        }
+
+        private void BoldCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TextBox.FontWeight = FontWeights.Normal;
+        }
+
+        private void ItalicsCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TextBox.FontStyle = FontStyles.Normal;
+        }
+
+        private void ItalicsCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            TextBox.FontStyle = FontStyles.Italic;
+        }
+
+        private void UnderlinedCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            TextBox.TextDecorations = TextDecorations.Underline;
+        }
+
+        private void UnderlinedCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TextBox.TextDecorations = new TextDecorationCollection();
         }
     }
 }
