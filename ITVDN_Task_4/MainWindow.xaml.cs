@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
 using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
@@ -11,17 +13,15 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-//using System.Windows.Media;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using Microsoft.Win32;
 
 namespace ITVDN_Task_4
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         bool flag = true;
@@ -85,8 +85,6 @@ namespace ITVDN_Task_4
                 //MessageBox.Show(TextBox.FontSize.ToString());
                 double doub = Double.Parse((FontSizeComboBox.SelectedItem as ComboBoxItem).Content.ToString());
                 TextBox.FontSize = doub;
-
-
             }
 
         }
@@ -123,29 +121,31 @@ namespace ITVDN_Task_4
                                           "FontSize",
                                           };
 
-            string[] values = new string[] {
-                                             FontColorPicer.SelectedColor.Value.R.ToString(),
-                                             FontColorPicer.SelectedColor.Value.G.ToString(),
-                                             FontColorPicer.SelectedColor.Value.B.ToString(),
-                                             BackgroundColorPicer.SelectedColor.Value.R.ToString(),
-                                             BackgroundColorPicer.SelectedColor.Value.G.ToString(),
-                                             BackgroundColorPicer.SelectedColor.Value.B.ToString(),
-                                             BoldCheckBox.IsChecked.ToString(),
-                                             ItalicsCheckBox.IsChecked.ToString(),
-                                             UnderlinedCheckBox.IsChecked.ToString(),
-                                             FontComboBox.Text,
-                                             FontSizeComboBox.Text,
-                                            };
+            string[] values = new string[11];
+
+            values[0] = FontColorPicer.SelectedColor.Value.R.ToString();
+            values[1] = FontColorPicer.SelectedColor.Value.G.ToString();
+            values[2] = FontColorPicer.SelectedColor.Value.B.ToString();
+            values[3] = BackgroundColorPicer.SelectedColor.Value.R.ToString();
+            values[4] = BackgroundColorPicer.SelectedColor.Value.G.ToString();
+            values[5] = BackgroundColorPicer.SelectedColor.Value.B.ToString();
+            values[6] = BoldCheckBox.IsChecked.ToString();
+            values[7] = ItalicsCheckBox.IsChecked.ToString();
+            values[8] = UnderlinedCheckBox.IsChecked.ToString();
+            values[9] = FontComboBox.Text;
+            values[10] = FontSizeComboBox.Text;
+
+
             for (int i = 0; i < keys.Length; i++)
             {
-                // Обращаемся к конкретной строке по ключу.
                 XmlElement element = (node.SelectSingleNode(string.Format("//add[@key='{0}']", keys[i])) as XmlElement);
 
-                // Если строка с таким ключем существует - записываем значение.
-                if (element != null) { element.SetAttribute("value", values[i]); }
+                if (element != null)
+                {
+                    element.SetAttribute("value", values[i]);
+                }
                 else
                 {
-                    // Иначе: создаем строку и формируем в ней пару [ключ]-[значение].
                     element = doc.CreateElement("add");
                     element.SetAttribute("key", keys[i]);
                     element.SetAttribute("value", values[i]);
@@ -171,5 +171,93 @@ namespace ITVDN_Task_4
                 throw new Exception("No configuration file found.", e);
             }
         }
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            NameValueCollection allAppSettings = ConfigurationManager.AppSettings;
+
+            if (allAppSettings.Count < 1)
+                return;
+
+            byte FontColorR = Byte.Parse(allAppSettings.Get("FontColor.R"));
+            byte FontColorG = Byte.Parse(allAppSettings.Get("FontColor.G"));
+            byte FontColorB = Byte.Parse(allAppSettings.Get("FontColor.B"));
+            this.FontColorPicer.SelectedColor = Color.FromRgb(FontColorR, FontColorG, FontColorB);
+
+            byte BackGroundColorR = Byte.Parse(allAppSettings.Get("BackGroundColor.R"));
+            byte BackGroundColorG = Byte.Parse(allAppSettings.Get("BackGroundColor.G"));
+            byte BackGroundColorB = Byte.Parse(allAppSettings.Get("BackGroundColor.B"));
+            this.BackgroundColorPicer.SelectedColor = Color.FromRgb(BackGroundColorR, BackGroundColorG, BackGroundColorB);
+
+            bool bold = Boolean.Parse(allAppSettings.Get("Bold"));
+            bool italics = Boolean.Parse(allAppSettings.Get("Italics"));
+            bool underline = Boolean.Parse(allAppSettings.Get("Underline"));
+            this.BoldCheckBox.IsChecked = bold;
+            this.ItalicsCheckBox.IsChecked = italics;
+            this.UnderlinedCheckBox.IsChecked = underline;
+
+            string FontFamily = allAppSettings.Get("FontFamily");
+            int FontSize = Int32.Parse(allAppSettings.Get("FontSize"));
+
+            this.TextBox.FontFamily = new FontFamily(FontFamily);
+            this.TextBox.FontSize = FontSize;
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            using (RegistryKey registry = Registry.CurrentUser)
+            {
+                using (var subKey = registry.OpenSubKey("Software", true))
+                {
+                    using (RegistryKey subSubKey = subKey.CreateSubKey("MyApp"))
+                    {
+                        subSubKey.SetValue("FontColor.R", FontColorPicer.SelectedColor.Value.R, RegistryValueKind.DWord);
+                        subSubKey.SetValue("FontColor.G", FontColorPicer.SelectedColor.Value.G, RegistryValueKind.DWord);
+                        subSubKey.SetValue("FontColor.B", FontColorPicer.SelectedColor.Value.B, RegistryValueKind.DWord);
+                        subSubKey.SetValue("BackGroundColor.R", BackgroundColorPicer.SelectedColor.Value.R, RegistryValueKind.DWord);
+                        subSubKey.SetValue("BackGroundColor.G", BackgroundColorPicer.SelectedColor.Value.G, RegistryValueKind.DWord);
+                        subSubKey.SetValue("BackGroundColor.B", BackgroundColorPicer.SelectedColor.Value.B, RegistryValueKind.DWord);
+                        subSubKey.SetValue("Bold", BoldCheckBox.IsChecked.ToString());
+                        subSubKey.SetValue("Italics", ItalicsCheckBox.IsChecked.ToString());
+                        subSubKey.SetValue("Underline", UnderlinedCheckBox.IsChecked.ToString());
+                        subSubKey.SetValue("FontFamily", FontComboBox.Text);
+                        subSubKey.SetValue("FontSize", Int32.Parse(FontSizeComboBox.Text), RegistryValueKind.DWord);
+                    }
+                }
+            }
+
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            using(RegistryKey registry = Registry.CurrentUser)
+            {
+                using(RegistryKey reg = registry.OpenSubKey(@"Software\MyApp"))
+                {
+                    byte FontColorR = (byte)(int)reg.GetValue("FontColor.R");
+                    byte FontColorG = (byte)(int)reg.GetValue("FontColor.G");
+                    byte FontColorB = (byte)(int)reg.GetValue("FontColor.B");
+                    this.FontColorPicer.SelectedColor = Color.FromRgb(FontColorR, FontColorG, FontColorB);
+
+                    byte BackGroundColorR = (byte)(int)reg.GetValue("BackGroundColor.R");
+                    byte BackGroundColorG = (byte)(int)reg.GetValue("BackGroundColor.G");
+                    byte BackGroundColorB = (byte)(int)reg.GetValue("BackGroundColor.B");
+                    this.BackgroundColorPicer.SelectedColor = Color.FromRgb(BackGroundColorR, BackGroundColorG, BackGroundColorB);
+
+                    bool bold = bool.Parse(reg.GetValue("Bold") as string);
+                    bool italics = bool.Parse(reg.GetValue("Italics") as string);
+                    bool underline = bool.Parse(reg.GetValue("Underline") as string);
+                    this.BoldCheckBox.IsChecked = bold;
+                    this.ItalicsCheckBox.IsChecked = italics;
+                    this.UnderlinedCheckBox.IsChecked = underline;
+
+                    string FontFamily = (string)reg.GetValue("FontFamily");
+                    int FontSize = (int)reg.GetValue("FontSize");
+
+                    this.TextBox.FontFamily = new FontFamily(FontFamily);
+                    this.TextBox.FontSize = FontSize;
+                }
+            }
+        }
     }
+
 }

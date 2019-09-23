@@ -47,7 +47,7 @@
                     <Label Content="Цвет текста:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="172"/>
                     <xctk:ColorPicker Name="FontColorPicer" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="172" SelectedColorChanged="FontColorPicer_SelectedColorChanged"/>
                     <Label Content="Цвет фона:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
-                    <xctk:ColorPicker Name="BackgroundColorPicer" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="172" SelectedColorChanged="ColorPicker_SelectedColorChanged"/>
+                    <xctk:ColorPicker Name="BackgroundColorPicer" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="172"  SelectedColorChanged="ColorPicker_SelectedColorChanged"/>
                 </Grid>
             </TabItem>
         </TabControl>
@@ -66,11 +66,11 @@
         <Menu HorizontalAlignment="Left" Height="30" Margin="-5,0,0,0" VerticalAlignment="Top" Width="599">
             <MenuItem Header="Сохранить" Height="30">
                 <MenuItem Header="В файл конфиругации" Click="MenuItem_Click"></MenuItem>
-                <MenuItem Header="В файл реестра"></MenuItem>
+                <MenuItem Header="В файл реестра" Click="MenuItem_Click_2"></MenuItem>
             </MenuItem>
             <MenuItem Header="Загрузить">
-                <MenuItem Header="Из файла конфиругации"></MenuItem>
-                <MenuItem Header="Из файла реестра"></MenuItem>
+                <MenuItem Header="Из файла конфиругации" Click="MenuItem_Click_1"></MenuItem>
+                <MenuItem Header="Из файла реестра" Click="MenuItem_Click_3"></MenuItem>
             </MenuItem>
         </Menu>
 
