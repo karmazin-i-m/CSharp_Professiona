@@ -1,40 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ITVDN_Task_2
 {
-    class Converter
+    public static class Converter
     {
-    }
-
-    struct Celsius : ITemperature
-    {
-        private int value;
-
-        public Celsius(int value)
+        public static double CelsiusToFaringate(double celsius)
         {
-            this.value = value;
+            return ((Fahrenheit) new Celsius(celsius)).Value;
         }
-
-        public int Value => throw new NotImplementedException();
-
-        public bool Equals(ITemperature x, ITemperature y)
+        public static double CelsiusToKelvin(double celsius)
         {
-            throw new NotImplementedException();
+            return ((Kelvin)new Celsius(celsius)).Value;
         }
-
-        public int GetHashCode(ITemperature obj)
+        public static double KelvinToFaringate(double kelvin)
         {
-            throw new NotImplementedException();
+            return ((Fahrenheit)new Kelvin(kelvin)).Value;
         }
-    }
-
-    interface ITemperature : IEqualityComparer<ITemperature>
-    {
-        int Value { get; }
+        public static double KelvinToCelsius(double kelvin)
+        {
+            return ((Celsius)new Kelvin(kelvin)).Value;
+        }
+        public static double FaringateToCelsius(double faringate)
+        {
+            return ((Celsius)new Fahrenheit(faringate)).Value;
+        }
+        public static double FaringateToKelvin(double faringate)
+        {
+            return ((Kelvin)new Fahrenheit(faringate)).Value;
+        }
     }
 
 }
