@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVDN_AdditionTask_1", "ITV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVDN_Task_2", "ITVDN_Task_2\ITVDN_Task_2.csproj", "{5D8626A5-48FC-4EA0-9CCA-C65A8C789BF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITVDN_Task_3", "ITVDN_Task_3\ITVDN_Task_3.csproj", "{7419B5F6-7EAC-468B-9C7F-527644D891DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5D8626A5-48FC-4EA0-9CCA-C65A8C789BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D8626A5-48FC-4EA0-9CCA-C65A8C789BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D8626A5-48FC-4EA0-9CCA-C65A8C789BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7419B5F6-7EAC-468B-9C7F-527644D891DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7419B5F6-7EAC-468B-9C7F-527644D891DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7419B5F6-7EAC-468B-9C7F-527644D891DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7419B5F6-7EAC-468B-9C7F-527644D891DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

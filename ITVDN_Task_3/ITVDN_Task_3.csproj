@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA6CC7A1-9781-44A4-9251-77650438BB8C}</ProjectGuid>
+    <ProjectGuid>{7419B5F6-7EAC-468B-9C7F-527644D891DC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ITVDN_AdditionTask_1</RootNamespace>
-    <AssemblyName>ITVDN_AdditionTask_1</AssemblyName>
+    <RootNamespace>ITVDN_Task_3</RootNamespace>
+    <AssemblyName>ITVDN_Task_3</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,9 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\ITVDN_Task_2.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
