@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ITVDN_AdditionTask_1
 {
@@ -12,14 +13,18 @@ namespace ITVDN_AdditionTask_1
         private const int DefaultTextBufferWidth = 120;
 
         private static Object KeyLock;
-        public event Action<ConsoleKey> KeyPressed;
-        public event Action<String> SetPath;
+        private static ConsoleKey key;
+
+        private static Thread viewThread1;
+        private static Thread viewThread2;
 
         public View(Object obj)
         {
             KeyLock = obj;
 
             ProgrammSettings();
+            viewThread1 = new Thread(() => { new StartBorder(); });
+            viewThread1.Start();
         }
 
         private static void ProgrammSettings()
@@ -32,100 +37,110 @@ namespace ITVDN_AdditionTask_1
 
         }
 
-        public void StartBorderView()
+        class StartBorder
         {
-            lock (KeyLock)
+            public StartBorder()
             {
-                Console.Clear();
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX             REFLECTOR TEXT             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.Write("X 1.                                                                                                                   X");
-                Console.Write("X 2.                                                                                                                   X");
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-
-                for (int i = 0; i < 33; i++)
+                lock (KeyLock)
                 {
-                    Console.Write("X                                                                                                                      X");
+                    Console.Clear();
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX             REFLECTOR TEXT             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.Write("X 1.                                                                                                                   X");
+                    Console.Write("X 2.                                                                                                                   X");
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+                    for (int i = 0; i < 33; i++)
+                    {
+                        Console.Write("X                                                                                                                      X");
+                    }
+
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    StartMenuTextView();
+
+                    Console.CursorLeft = 1;
+                    Console.CursorTop = 6;
+
+                    key = Console.ReadKey(false).Key;
+
+                    if (key.Equals(ConsoleKey.D1))
+                    {
+                        new Thread(() => { new TypeBorder(); }).Start();
+                    }
+                    else
+                        Environment.Exit(0);
+
                 }
-
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                StartMenuTextView();
-
-                Console.CursorLeft = 1;
-                Console.CursorTop = 6;
-
-                IsTherePressKeyHandler(Console.ReadKey(true).Key);
             }
-        }
 
-        public void TypeBorderView()
-        {
-            lock (KeyLock)
+            private void StartMenuTextView()
             {
-                Console.Clear();
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX             REFLECTOR TEXT             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.Write("X 1.                                                                                                                   X");
-                Console.Write("X 2.                                                                                                                   X");
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                              
-                for (int i = 0; i < 33; i++)
+                lock (KeyLock)
                 {
-                    Console.Write("Х                                     Х                                                                                Х");
+                    Console.CursorLeft = 4;
+                    Console.CursorTop = 3;
+
+                    Console.Write("Open File");
+
+                    Console.CursorLeft = 4;
+                    Console.CursorTop = 4;
+
+                    Console.Write("Exit");
                 }
-
-                Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                TypeMenuTextView();
-                Console.CursorLeft = 1;
-                Console.CursorTop = 6;
             }
         }
-
-        private void StartMenuTextView()
+        class TypeBorder
         {
-            lock (KeyLock)
+            public TypeBorder()
             {
-                Console.CursorLeft = 4;
-                Console.CursorTop = 3;
+                lock (KeyLock)
+                {
+                    Console.Clear();
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX             REFLECTOR TEXT             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.Write("X 1.                                                                                                                   X");
+                    Console.Write("X 2.                                                                                                                   X");
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-                Console.Write("Open File");
+                    for (int i = 0; i < 33; i++)
+                    {
+                        Console.Write("Х                                     Х                                                                                Х");
+                    }
 
-                Console.CursorLeft = 4;
-                Console.CursorTop = 4;
+                    Console.Write("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    TypeMenuTextView();
+                    Console.CursorLeft = 1;
+                    Console.CursorTop = 6;
 
-                Console.Write("Exit");
+                    key = Console.ReadKey().Key;
+
+                    if (key.Equals(ConsoleKey.D1))
+                    {
+
+                    }
+                    else
+                    {
+                        new Thread(() => { new StartBorder();}).Start();
+                    }
+                }
             }
-        }
-
-        private void TypeMenuTextView()
-        {
-            lock (KeyLock)
+            private void TypeMenuTextView()
             {
-                Console.CursorLeft = 4;
-                Console.CursorTop = 3;
+                lock (KeyLock)
+                {
+                    Console.CursorLeft = 4;
+                    Console.CursorTop = 3;
 
-                Console.Write("Press key that show Type info");
+                    Console.Write("Press key that show Type info");
 
-                Console.CursorLeft = 4;
-                Console.CursorTop = 4;
+                    Console.CursorLeft = 4;
+                    Console.CursorTop = 4;
 
-                Console.Write("Back");
+                    Console.Write("Back");
+                }
             }
-        }
-
-        private void IsTherePressKeyHandler(ConsoleKey key)
-        {
-            if (KeyPressed == null)
-                throw new NullReferenceException("У события нет обработчиков.");
-
-            KeyPressed.Invoke(key);
-        }
-
-        private void IsTherePathHandler(String path)
-        {
-
         }
     }
 }
