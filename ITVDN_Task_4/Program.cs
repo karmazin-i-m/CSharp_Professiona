@@ -32,7 +32,7 @@ namespace ITVDN_Task_4
                 using (StreamReader sr = new StreamReader(fs))
                 {
                     string local = sr.ReadToEnd();
-                    Console.WriteLine(sr.ReadToEnd().ToString("C", american));
+                    Console.WriteLine(local.ToString("C", american));
                 }
             }
 
