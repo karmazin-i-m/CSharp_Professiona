@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -97,5 +97,52 @@ namespace ITVDN_Task_3
                 }
             }
         }
+                //    static void Main(string[] args)
+        //    {
+        //        GetInfo();
+        //        Read();
+        //        Comprress();
+
+        //    }
+
+        //    public static void GetInfo()
+        //    {
+        //        Console.OutputEncoding = Encoding.Unicode;
+        //        FileInfo file = new FileInfo(@"D:\Test.txt");
+
+        //        if (file.Exists)
+        //        {
+        //            Console.WriteLine("FileName : {0}", file.Name);
+        //            Console.WriteLine("Path     : {0}", file.FullName);
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Файл не существует.");
+        //        }
+        //    }
+
+        //    public static void Read()
+        //    {
+        //        FileStream file = File.Open(@"D:\Test.txt", FileMode.OpenOrCreate, FileAccess.Read);
+        //        StreamReader reader = new StreamReader(file);
+        //        Console.Write(reader.ReadToEnd());
+        //        reader.Close();
+        //    }
+        //    public static void Comprress()
+        //    {
+        //        FileStream source = File.OpenRead(@"D:\Test.txt");
+        //        FileStream destination = File.Create(@"D:\archive.dfl");
+        //        DeflateStream compressor = new DeflateStream(destination, CompressionMode.Compress);
+
+        //        int theByte = source.ReadByte();
+
+        //        while (theByte != -1)
+        //        {
+        //            compressor.WriteByte((byte)theByte);
+        //            theByte = source.ReadByte();
+        //        }
+        //        compressor.Close();
+        //    }
+        //}
     }
 }
